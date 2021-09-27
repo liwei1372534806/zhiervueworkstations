@@ -97,6 +97,21 @@ export const asyncRouterMap = [
           }
         ]
       },
+      // CronTab
+      {
+        path: '/cron',
+        redirect: '/cron/list',
+        component: RouteView,
+        meta: { title: '定时任务管理' },
+        children: [
+          {
+            path: '/cron/list',
+            name: 'CronTab',
+            component: () => import('@/views/crontab/CronTab'),
+            meta: { title: '定时任务列表', keepAlive: true, permission: ['cron'] }
+          }
+        ]
+      },
       // // forms
       // {
       //   path: '/form',
@@ -410,16 +425,16 @@ export const constantRouterMap = [
         name: 'login',
         component: () => import(/* webpackChunkName: "user" */ '@/views/user/Login')
       },
-      {
-        path: 'register',
-        name: 'register',
-        component: () => import(/* webpackChunkName: "user" */ '@/views/user/Register')
-      },
-      {
-        path: 'register-result',
-        name: 'registerResult',
-        component: () => import(/* webpackChunkName: "user" */ '@/views/user/RegisterResult')
-      },
+      // {
+      //   path: 'register',
+      //   name: 'register',
+      //   component: () => import(/* webpackChunkName: "user" */ '@/views/user/Register')
+      // },
+      // {
+      //   path: 'register-result',
+      //   name: 'registerResult',
+      //   component: () => import(/* webpackChunkName: "user" */ '@/views/user/RegisterResult')
+      // },
       {
         path: 'recover',
         name: 'recover',
