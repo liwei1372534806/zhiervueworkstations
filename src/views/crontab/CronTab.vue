@@ -14,11 +14,13 @@
           <span slot="action" slot-scope="text,record">
             <a-button
               size="small"
-              type="primary">启动
+              type="primary"
+              @click="handleStart()">启动
           </a-button><a-divider type="vertical"/>
           <a-button
             size="small"
-            type="danger">停止
+            type="danger"
+            @click="handleStop()">停止
           </a-button><a-divider type="vertical"/>
           <a-button
             size="small"
@@ -93,7 +95,7 @@ export default {
         "job_frequency": "test",
         "job_status": 1,
         "operation": 1
-      },{
+      }, {
         "job_id": 1,
         'job_name': "test",
         "job_describe": "测试内容",
@@ -105,6 +107,36 @@ export default {
       loading: false
     }
   },
+  methods: {
+    handleStart() {
+      startJob().then(res => {
+        if (res.code === 20000) {
+          this.$message.success('job启动成功~')
+        }else {
+          this.$message.info('job启动失败！')
+        }
+      })
+    },
+    handleStop() {
+      stopJob().then(res => {
+        if (res.code === 20000) {
+          this.$message.success('job停止成功~')
+        } else {
+          this.$message.info('job停止失败！')
+        }
+      })
+    },
+    handleRemove() {
+      removeJob().then(res => {
+        if (res.code === 20000) {
+          this.$message.success('job移除成功~')
+        } else {
+          this.$message.info('job移除失败！')
+        }
+      })
+    }
+  },
+
 }
 </script>
 

@@ -5,7 +5,7 @@ const cronApi = {
   add: '/job/addJob',
   remove: '/job/removeJob',
   stop: '/job/pauseJob',
-  start: '/job/StartJob',
+  start: '/job/startJob',
 }
 
 export function getList() {
