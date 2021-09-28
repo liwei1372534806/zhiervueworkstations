@@ -40,8 +40,8 @@
 </template>
 
 <script>
-import { login } from '@/api/login_token'
-import { register } from '@/api/login'
+import {login} from '@/api/login_token'
+import {register} from '@/api/login'
 import storage from 'store'
 
 export default {
@@ -57,13 +57,13 @@ export default {
   },
   methods: {
     handleclick() {
-      login({ username: this.username, password: this.password }).then(res => {
+      login({username: this.username, password: this.password}).then(res => {
         if (res.code === 20000) {
           storage.set('Authorization', 'Bearer ' + res.token)
           this.$router.push('/database/redis')
         }
-        if(res.status=401){
-          this.$message.error("该用户登录失败！")
+        if (res.status === 401) {
+          this.$message.error("该用户登录授权失败！")
         }
       })
     },
@@ -71,7 +71,7 @@ export default {
       this.visible = true
     },
     registerAccount() {
-      register({ username: this.username, password: this.password, is_superuser: 0, is_active: 0, is_staff: 0 }).then(
+      register({username: this.username, password: this.password, is_superuser: 0, is_active: 0, is_staff: 0}).then(
         res => {
           if (res.code === 200) {
             this.$message.success('注册成功～')
