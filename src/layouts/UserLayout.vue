@@ -13,9 +13,9 @@
               <span class="title">只二测试平台</span>
             </a>
           </div>
-          <div class="desc">
-            {{ $t('layouts.userLayout.title') }}
-          </div>
+<!--          <div class="desc">-->
+<!--            {{ $t('layouts.userLayout.title') }}-->
+<!--          </div>-->
         </div>
 
         <router-view />
