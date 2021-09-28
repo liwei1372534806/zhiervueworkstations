@@ -62,6 +62,9 @@ export default {
           storage.set('Authorization', 'Bearer ' + res.token)
           this.$router.push('/database/redis')
         }
+        if(res.status=401){
+          this.$message.error("该用户登录失败！")
+        }
       })
     },
     handleRegister() {

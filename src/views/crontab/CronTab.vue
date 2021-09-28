@@ -28,7 +28,8 @@
           </a-button><a-divider type="vertical"/>
           <a-button
             size="small"
-            type="primary" style="margin-top: 2%">删除
+            type="primary" style="margin-top: 2%"
+            @click="handleRemove()">删除
           </a-button><a-divider type="vertical"/>
           </span>
 
@@ -42,7 +43,8 @@
 </template>
 
 <script>
-import {addJob, startJob, stopJob, removeJob} from '@/api/cron'
+import {addJob, startJob, stopJob, removeJob, getList} from '@/api/cron'
+import {getOptions} from "@/api/es";
 
 const columns = [
   {
@@ -107,12 +109,19 @@ export default {
       loading: false
     }
   },
+  created() {
+    getOptions().then(res => {
+
+      this.data_list = res.data
+
+    })
+  },
   methods: {
     handleStart() {
       startJob().then(res => {
         if (res.code === 20000) {
           this.$message.success('job启动成功~')
-        }else {
+        } else {
           this.$message.info('job启动失败！')
         }
       })
@@ -134,7 +143,16 @@ export default {
           this.$message.info('job移除失败！')
         }
       })
-    }
+    },
+    handleAdd() {
+      addJob().then(res => {
+        if (res.code === 20000) {
+          this.$message.success('job添加成功~')
+        } else {
+          this.$message.info('job添加失败！')
+        }
+      })
+    },
   },
 
 }
