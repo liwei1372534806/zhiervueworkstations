@@ -13,9 +13,9 @@
               <span class="title">只二测试平台</span>
             </a>
           </div>
-<!--          <div class="desc">-->
-<!--            {{ $t('layouts.userLayout.title') }}-->
-<!--          </div>-->
+          <div class="desc">
+            上海只二网络科技有限公司
+          </div>
         </div>
 
         <router-view />

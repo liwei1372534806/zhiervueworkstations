@@ -21,7 +21,7 @@
       </a-row>
     </div>
     <div>
-      <a-modal v-model="visible" title="账号注册" @ok="registerAccount">
+      <a-modal v-model="visible" title="注册账号" @ok="registerAccount">
         <a-row>用户名:
           <a-input v-model="username" style="width: 50%"></a-input>
           <p></p>
@@ -62,16 +62,13 @@ export default {
           storage.set('Authorization', 'Bearer ' + res.token)
           this.$router.push('/database/redis')
         }
-        if (res.status === 401) {
-          this.$message.error("该用户登录授权失败！")
-        }
       })
     },
     handleRegister() {
       this.visible = true
     },
     registerAccount() {
-      register({username: this.username, password: this.password, is_superuser: 0, is_active: 0, is_staff: 0}).then(
+      register({username: this.username, password: this.password, is_superuser: 0, is_active: 1, is_staff: 1}).then(
         res => {
           if (res.code === 200) {
             this.$message.success('注册成功～')
