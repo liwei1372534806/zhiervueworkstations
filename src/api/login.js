@@ -5,9 +5,6 @@ const userApi = {
   Logout: '/auth/logout',
   ForgePassword: '/auth/forge-password',
   Register: '/user/user/',
-  // twoStepCode: '/auth/2step-code',
-  // SendSms: '/account/sms',
-  // SendSmsErr: '/account/sms_err',
   // get my info
   UserInfo: '/login/user_info/',
   UserMenu: '/user/nav'
