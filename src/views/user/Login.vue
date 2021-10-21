@@ -62,6 +62,9 @@ export default {
           storage.set('Authorization', 'Bearer ' + res.token)
           this.$router.push('/database/redis')
         }
+        if (res.code = 500) {
+          this.$message.error(res.msg)
+        }
       })
     },
     handleRegister() {

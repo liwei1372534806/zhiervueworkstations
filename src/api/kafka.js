@@ -13,12 +13,12 @@ export function getTopics(parameter) {
   })
 }
 
-
 export function getTopicList(parameter) {
   return request({
     url: kafkaApi.data_list,
-    method: 'post',
-    data: parameter
+    method: 'get',
+    params: parameter
   })
 }
+
 

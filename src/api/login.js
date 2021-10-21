@@ -4,7 +4,7 @@ const userApi = {
   Login: '/login/login_token/',
   Logout: '/auth/logout',
   ForgePassword: '/auth/forge-password',
-  Register: '/user/user/',
+  Register: '/user/',
   // get my info
   UserInfo: '/login/user_info/',
   UserMenu: '/user/nav'

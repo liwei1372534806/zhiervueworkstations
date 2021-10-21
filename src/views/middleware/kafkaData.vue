@@ -40,28 +40,68 @@
         </a-col>
       </a-row>
     </div>
-    <div class="search-result-list"></div>
+    <div class="search-result-list">
+      <a-table
+        :loading="loading"
+        :rowKey="record=>record.key"
+        :columns="columns"
+        :data-source="data_list"
+        :scroll="{ x: 1500, y: 500 }"
+        bordered>
+        <!--          <a slot="name" slot-scope="text">{{ text }}</a>-->
+      </a-table>
+    </div>
   </page-header-wrapper>
 </template>
 
 <script>
-import { getTopics, getTopicList } from '@/api/kafka'
+import {getTopics, getTopicList} from '@/api/kafka'
 
+const columns = [
+  {
+    title: 'partition',
+    dataIndex: 'partition',
+    key: 'partition'
+  },
+  {
+    title: 'offset',
+    dataIndex: 'offset',
+    key: 'offset'
+  },
+  {
+    title: 'key',
+    dataIndex: 'key',
+    key: 'key'
+  },
+  {
+    title: 'value',
+    dataIndex: 'value',
+    key: 'value'
+  },
+  {
+    title: 'timestamp',
+    dataIndex: 'timestamp',
+    key: 'timestamp'
+  }
+]
 export default {
   name: 'kafkaData',
   data() {
     return {
       ENV: 't',
+      columns,
       dataZ: [],
       value: '',
       allDataZ: [],
       frontDataZ: [],
       treePageSize: 100,
-      scrollPage: 1
+      scrollPage: 1,
+      data_list: [],
+      loading: false
     }
   },
   created() {
-    getTopics({ ENV: this.ENV }).then(
+    getTopics({ENV: this.ENV}).then(
       res => {
         this.allDataZ = res.data
         this.frontDataZ = this.allDataZ.slice(0, 100)
@@ -71,17 +111,23 @@ export default {
   },
   methods: {
     changeTopic() {
-      getTopics({ ENV: this.ENV }).then(res => {
+      getTopics({ENV: this.ENV}).then(res => {
         this.allDataZ = res.data
         this.frontDataZ = this.allDataZ.slice(0, 100)
         this.dataZ = this.frontDataZ
       })
     },
     handleSearch() {
-      console.log(this.value)
+      this.loading = true
+      getTopicList({topic: this.value}).then(res => {
+        console.log(res.data)
+          this.data_list = res.data
+        }
+      )
+      this.loading = false
     },
     handlePopupScroll(e) {
-      const { target } = e
+      const {target} = e
       const scrollHeight = target.scrollHeight - target.scrollTop
       const clientHeight = target.clientHeight
       // 下拉框不下拉的时候
@@ -146,6 +192,15 @@ export default {
   max-width: none;
 }
 
+#components-form-demo-advanced-search .search-result-list {
+  margin-top: 16px;
+  border: 1px dashed #e9e9e9;
+  border-radius: 6px;
+  background-color: #fafafa;
+  min-height: 200px;
+  text-align: center;
+  padding-top: 80px;
+}
 #components-form-demo-advanced-search .search-result-list {
   margin-top: 16px;
   border: 1px dashed #e9e9e9;
