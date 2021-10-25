@@ -120,7 +120,6 @@ export default {
     handleSearch() {
       this.loading = true
       getTopicList({topic: this.value}).then(res => {
-        console.log(res.data)
           this.data_list = res.data
         }
       )

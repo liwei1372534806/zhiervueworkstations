@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: 'kakfkaPush'
+  name: 'kafkaPush'
 }
 </script>
 

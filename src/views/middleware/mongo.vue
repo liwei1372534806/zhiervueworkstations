@@ -27,6 +27,15 @@
           bordered>
           <!--          <a slot="name" slot-scope="text">{{ text }}</a>-->
         </a-table>
+        <!--        <template v-for="{item,itemIndex} in data">-->
+        <!--          <a-table-column :title="item.name" :key="item.key">-->
+        <!--            <template slot-scope="text,record">-->
+        <!--            <div>{{handleSearch}}}</div>-->
+        <!--            </template>-->
+
+        <!--          </a-table-column>-->
+        <!--        </template>-->
+
       </div>
     </div>
   </page-header-wrapper>
@@ -34,7 +43,7 @@
 
 <script>
 
-import { getOptions, getMongoList } from '@/api/mongo'
+import {getOptions, getMongoList} from '@/api/mongo'
 
 const columns = [
   // {
@@ -117,8 +126,16 @@ export default {
     handleSearch() {
       if (this.data_list) {
         this.loading = true
-        getMongoList({ data_base: this.data_list[0], table_name: this.data_list[1] }).then(res => {
+        getMongoList({data_base: this.data_list[0], table_name: this.data_list[1]}).then(res => {
           this.data = res.data
+          const firstData = res.data[0] || {};
+          console.log(res.data[0])
+          this.columns = Object.keys(firstData).map((item)=>({
+            title: item,
+            dataIndex: item,
+            key: item
+          }))
+          console.log(this.columns)
           this.loading = false
         })
 
