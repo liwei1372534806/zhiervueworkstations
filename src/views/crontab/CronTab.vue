@@ -109,13 +109,13 @@ export default {
       loading: false
     }
   },
-  created() {
-    getOptions().then(res => {
-
-      this.data_list = res.data
-
-    })
-  },
+  // created() {
+  //   getOptions().then(res => {
+  //
+  //     this.data_list = res.data
+  //
+  //   })
+  // },
   methods: {
     handleStart() {
       startJob().then(res => {
