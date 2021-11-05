@@ -15,10 +15,10 @@
         </a-col>
         <a-col :span="8">
           用户/商品ID：
-          <a-input placeholder="请输入用户/商品ID，多个的以逗号隔开" style="width: 60%"></a-input>
+          <a-input placeholder="请输入用户/商品ID，多个的以逗号隔开" style="width: 60%" v-model="ids"></a-input>
         </a-col>
         <a-col :span="6">
-          <a-button type="primary" @click="">
+          <a-button type="primary" @click="handleSearch">
             查询
           </a-button>
         </a-col>
@@ -28,11 +28,11 @@
         <a-row type="flex" justify="space-around">
           <a-col :span="10">
             ES查询数据:
-            <a-textarea autosize="true"></a-textarea>
+            <a-textarea autosize="true" v-model="es_data"></a-textarea>
           </a-col>
           <a-col :span="10">
             mysql查询数据:
-            <a-textarea autosize="ture"></a-textarea>
+            <a-textarea autosize="ture" v-model="sql_data"></a-textarea>
           </a-col>
 
         </a-row>
@@ -43,28 +43,38 @@
 
 <script>
 
-import { getOptions } from '@/api/es'
+import {getProductOptions, getEsProductData} from '@/api/es'
 
 export default {
   name: 'esProductSearch',
   data() {
     return {
       options: [],
-      value: ''
+      value: '',
+      ids: '',
+      es_data: [],
+      sql_data: []
 
     }
   },
   created() {
-    getOptions().then(res => {
+    getProductOptions().then(res => {
       let alias_list = []
       for (let i = 0; i < res.data.length; i++) {
-        alias_list.push({ 'title': res.data[i]['alias_name'], 'value': res.data[i]['alias_name'] })
+        alias_list.push({'title': res.data[i]['alias_name'], 'value': res.data[i]['alias_name']})
       }
       this.options = alias_list
 
     })
   },
-  methods: {}
+  methods: {
+    handleSearch() {
+      getEsProductData({'alias_name': this.value, 'ids': this.ids}).then(res => {
+        this.es_data = JSON.stringify(res.data.es_data)
+        this.sql_data = JSON.stringify(res.data.sql_data)
+      })
+    }
+  }
 }
 </script>
 <style>
