@@ -3,6 +3,7 @@ import request from '@/utils/request'
 const esApi = {
   options_list: '/middleware/es/esAlias',
   product_options_list:'/middleware/es/product/esAlias',
+  standard_data_list:'/middleware/es/standard/esData',
   product_data_list:'/middleware/es/product/esData',
   data_list: '/middleware/table/list',
   alias_index: '/middleware/es/esIndex',
@@ -24,9 +25,20 @@ export function getProductOptions() {
 }
 
 
+
+
 export function getEsProductData(parameter) {
   return request({
     url: esApi.product_data_list,
+    method: 'get',
+    params: parameter
+  })
+}
+
+
+export function getEsStandardData(parameter) {
+  return request({
+    url: esApi.standard_data_list,
     method: 'get',
     params: parameter
   })

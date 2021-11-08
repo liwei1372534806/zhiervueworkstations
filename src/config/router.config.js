@@ -71,6 +71,11 @@ export const asyncRouterMap = [
               name: 'esProductSearch',
               component: () => import('@/views/middleware/esProductSearch'),
               meta: { title: 'ES商品查询', keepAlive: true, permission: ['database'] }
+            },{
+              path: '/database/es/StandardProduct',
+              name: 'esStandardProduct',
+              component: () => import('@/views/middleware/esStandardProduct'),
+              meta: { title: 'ES标品库查询', keepAlive: true, permission: ['database'] }
             }]
           },
           {
