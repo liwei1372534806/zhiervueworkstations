@@ -41,6 +41,13 @@
           </a-col>
         </a-row>
         <a-row>
+          <a-col :span="8">
+            <a-form-model-item label="品牌ID：" prop="brand_id">
+              <a-input placeholder="请输入尺码名称" style="width: 60%" v-model="standardForm.brand_id"></a-input>
+            </a-form-model-item>
+          </a-col>
+        </a-row>
+        <a-row>
           <a-col :span="24" :style="{ textAlign: 'right' }">
             <a-button type="primary" @click="handleSubmit">
               查询
@@ -82,6 +89,7 @@ export default {
         'prod_category': "",
         'prod_degree': "",
         "series_id": "",
+        "brand_id": "",
         'yard_name': ""
       },
       data_list: [],
@@ -100,11 +108,11 @@ export default {
         if (res.code === 20000) {
           this.data_list = res.data
           const firstData = res.data[0] || {};
-          this.columns = Object.keys(firstData).map((item)=>({
+          this.columns = Object.keys(firstData).map((item) => ({
             title: item,
             dataIndex: item,
             key: item,
-            width:200
+            width: 200
           }))
           this.loading = false
         }
