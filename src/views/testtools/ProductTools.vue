@@ -2,7 +2,7 @@
   <page-header-wrapper>
     <div id="components-form-demo-advanced-search">
       <a-form-model :model="productForm" class="ant-advanced-search-form">
-        <a-collapse accordion>
+        <a-collapse v-model="activeKey">
           <a-collapse-panel key="1" header="环境&提交寄卖">
             <a-form-model-item label="环境：">
               <a-radio-group v-model="productForm.env" button-style="solid" @change="changeTopic">
@@ -30,35 +30,53 @@
                 style="width: 20%"
                 :options="options"></a-select>
             </a-form-model-item>
-            <a-row type="flex" justify="space-around">
-              <a-col :span="8">
+            <a-row>
+              <a-col :span="6">
                 <a-form-model-item v-if="productForm.consignment===1" label="手机号">
-                  <a-input style="width:40%"></a-input>
+                  <a-input style="width:50%"></a-input>
                 </a-form-model-item>
               </a-col>
-              <a-col :span="8">
+              <a-col :span="6">
                 <a-form-model-item v-if="productForm.consignment===1" label="分类">
-                  <a-input style="width: 40%"></a-input>
+                  <a-select
+                    v-model="productForm.proc_type"
+                    placeholder="请选择一级分类"
+                    style="width: 40%"
+                    :options="productTypeOptions"></a-select>
                 </a-form-model-item>
               </a-col>
-              <a-col :span="8">
+              <a-col :span="6">
                 <a-form-model-item v-if="productForm.consignment===1" label="品牌">
-                  <a-input style="width: 40%"></a-input>
+                  <a-input style="width: 50%"></a-input>
                 </a-form-model-item>
               </a-col>
-
+              <a-col :span="6">
+                <a-form-model-item v-if="productForm.consignment===1" label="物流单号">
+                  <a-input style="width: 50%"></a-input>
+                </a-form-model-item>
+              </a-col>
 
             </a-row>
             <a-form-model-item v-if="productForm.consignment===1" label="图片">
-              <a-input style="width: 20%"></a-input>
+              <a-input style="width: 50%"></a-input>
             </a-form-model-item>
-            <a-form-model-item v-if="productForm.consignment===1" :style="{ textAlign: 'center' }">
-              <a-button type="primary">提交寄卖</a-button>
+            <!--            <a-form-model-item v-if="productForm.consignment===1" :style="{ textAlign: 'center' }">-->
+            <!--              <a-button type="primary">提交寄卖</a-button>-->
+            <!--            </a-form-model-item>-->
+          </a-collapse-panel>
+          <a-collapse-panel key="2" header="选款审核&暂存库位">
+            <!--            <a-form-model-item label="选款审核开关">-->
+            <!--              <a-input></a-input>-->
+            <!--            </a-form-model-item>-->
+            <a-form-model-item label="暂存库位">
+              <a-space>
+                <a-input v-model="productForm.storage"></a-input>
+                <a-button type="primary" size="small" @click="checkStorage">查询库位</a-button>
+              </a-space>
             </a-form-model-item>
           </a-collapse-panel>
 
-
-          <a-collapse-panel key="2" header="女装&包袋寄卖上架流程">
+          <a-collapse-panel key="3" header="女装&包袋寄卖上架流程">
             <a-form-model-item label="包袋or女装">
               <a-select
                 v-model="productForm.flow"
@@ -73,11 +91,12 @@
             <a-form-model-item v-if="productForm.flow ===0" label="包袋节点：">
               <a-checkbox-group v-model="productForm.bag" :options="bagOptions"></a-checkbox-group>
             </a-form-model-item>
-            <a-form-model-item>
-              <a-button type="primary">提交流程</a-button>
-            </a-form-model-item>
+
           </a-collapse-panel>
         </a-collapse>
+        <a-form-model-item style="text-align: right">
+          <a-button type="primary">提交寄卖上架流程</a-button>
+        </a-form-model-item>
       </a-form-model>
     </div>
   </page-header-wrapper>
@@ -88,8 +107,13 @@ export default {
   name: "ProductTools",
   data() {
     return {
-      options: [{'title': "否", 'value': 0}, {'title': "是", 'value': 1}],
+      activeKey: ['1', '2', '3'],
+      options: [{'title': "是", 'value': 1}],
       flowOptions: [{'title': "包袋", 'value': 0}, {'title': "女装", 'value': 1}],
+      productTypeOptions: [{'title': "包袋", 'value': 78}, {'title': "女装", 'value': 8}, {
+        'title': "配饰", 'value': 153
+      }, {'title': "鞋靴", 'value': 154},
+        {'title': "珠宝首饰", 'value': 287}, {'title': "腕表", 'value': 597}],
       dressOptions: [
         {"label": "签收", "value": 0},
         {label: "鉴定", value: 1},
@@ -110,9 +134,14 @@ export default {
         {label: "拍摄", value: 6},
         {label: "复核", value: 7},
         {label: "定价", value: 8}],
-      productForm: {'env': 't', 'consignment': 1, 'flow': 0, 'dress': [], 'bag': []}
+      productForm: {'env': 't', 'consignment': 1, 'flow': 0, "proc_type": '', 'storage': '', 'dress': [], 'bag': []}
     }
   },
+  methods: {
+    checkStorage() {
+      console.log()
+    }
+  }
 }
 </script>
 
