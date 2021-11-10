@@ -102,6 +102,26 @@ export const asyncRouterMap = [
           }
         ]
       },
+      //testtools
+      {
+        path: '/tools',
+        redirect: '/tools/user',
+        component: RouteView,
+        meta: { title: '测试工具集' },
+        children: [
+          {
+            path: '/tools/user',
+            name: 'UserTools',
+            component: () => import('@/views/testtools/UserTools'),
+            meta: { title: '账号管理', keepAlive: true, permission: ['cron'] }
+          },{
+            path: '/tools/product',
+            name: 'CronTab',
+            component: () => import('@/views/testtools/ProductTools'),
+            meta: { title: '创建商品', keepAlive: true, permission: ['cron'] }
+          }
+        ]
+      },
       // CronTab
       {
         path: '/cron',

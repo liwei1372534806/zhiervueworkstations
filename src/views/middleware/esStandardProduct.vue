@@ -43,7 +43,7 @@
         <a-row>
           <a-col :span="8">
             <a-form-model-item label="品牌ID：" prop="brand_id">
-              <a-input placeholder="请输入尺码名称" style="width: 60%" v-model="standardForm.brand_id"></a-input>
+              <a-input placeholder="请输入品牌ID" style="width: 60%" v-model="standardForm.brand_id"></a-input>
             </a-form-model-item>
           </a-col>
         </a-row>
