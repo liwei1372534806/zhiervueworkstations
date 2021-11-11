@@ -40,6 +40,7 @@
                 <a-form-model-item v-if="productForm.consignment===1" label="分类">
                   <a-select
                     v-model="productForm.proc_type"
+                    show-search
                     placeholder="请选择一级分类"
                     style="width: 40%"
                     :options="productTypeOptions"></a-select>
@@ -47,7 +48,12 @@
               </a-col>
               <a-col :span="6">
                 <a-form-model-item v-if="productForm.consignment===1" label="品牌">
-                  <a-input style="width: 50%"></a-input>
+                  <a-select
+                    v-model="productForm.proc_brand"
+                    show-search
+                    placeholder="请选择品牌"
+                    style="width: 40%"
+                    :options="BrandOptions"></a-select>
                 </a-form-model-item>
               </a-col>
               <a-col :span="6">
@@ -94,8 +100,9 @@
 
           </a-collapse-panel>
         </a-collapse>
+        <p></p>
         <a-form-model-item style="text-align: right">
-          <a-button type="primary">提交寄卖上架流程</a-button>
+          <a-button type="primary">提交寄卖商品</a-button>
         </a-form-model-item>
       </a-form-model>
     </div>
@@ -114,6 +121,7 @@ export default {
         'title': "配饰", 'value': 153
       }, {'title': "鞋靴", 'value': 154},
         {'title': "珠宝首饰", 'value': 287}, {'title': "腕表", 'value': 597}],
+      BrandOptions: [{'title': "包袋", 'value': 0}, {'title': "女装", 'value': 1}],
       dressOptions: [
         {"label": "签收", "value": 0},
         {label: "鉴定", value: 1},
