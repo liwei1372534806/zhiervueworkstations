@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 
 const productApi = {
-  app_user: '/tools/getUser',
+  app_user: '/product/tools/user',
   check_mobile: '/product/checkMobile',
   check_storage: '/product/checkStorage',
   create_product: '/product/createManManProudct'
