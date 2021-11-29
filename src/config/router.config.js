@@ -71,7 +71,7 @@ export const asyncRouterMap = [
               name: 'esProductSearch',
               component: () => import('@/views/middleware/esProductSearch'),
               meta: { title: 'ES商品查询', keepAlive: true, permission: ['database'] }
-            },{
+            }, {
               path: '/database/es/StandardProduct',
               name: 'esStandardProduct',
               component: () => import('@/views/middleware/esStandardProduct'),
@@ -113,12 +113,27 @@ export const asyncRouterMap = [
             path: '/tools/user',
             name: 'UserTools',
             component: () => import('@/views/testtools/UserTools'),
-            meta: { title: '账号管理', keepAlive: true, permission: ['cron'] }
-          },{
+            meta: { title: '账号管理', keepAlive: true, permission: ['tools'] }
+          }, {
             path: '/tools/product',
             name: 'CronTab',
             component: () => import('@/views/testtools/ProductTools'),
-            meta: { title: '创建商品', keepAlive: true, permission: ['cron'] }
+            meta: { title: '创建商品', keepAlive: true, permission: ['tools'] }
+          }
+        ]
+      },
+      // Jmeter
+      {
+        path: '/jmeter',
+        redirect: '/jmeter/list',
+        component: RouteView,
+        meta: { title: 'Jmeter管理' },
+        children: [
+          {
+            path: '/jmeter/list',
+            name: 'JmeterReport',
+            component: () => import('@/views/jmeterReport/JmeterReport'),
+            meta: { title: 'Jmeter报告列表', keepAlive: true, permission: ['jmeter'] }
           }
         ]
       },
