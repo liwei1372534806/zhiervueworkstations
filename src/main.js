@@ -10,7 +10,7 @@ import i18n from './locales'
 import { VueAxios } from './utils/request'
 import ProLayout, { PageHeaderWrapper } from '@ant-design-vue/pro-layout'
 import themePluginConfig from '../config/themePluginConfig'
-import {Cascader,Select,Modal,FormModel,Collapse,Checkbox} from 'ant-design-vue'
+import {Cascader,Select,Modal,FormModel,Collapse,Checkbox,Layout,Descriptions} from 'ant-design-vue'
 import {} from '@/permission'
 // mock
 // WARNING: `mockjs` NOT SUPPORT `IE` PLEASE DO NOT USE IN `production` ENV.
@@ -30,6 +30,8 @@ Vue.use(Modal)
 Vue.use(Select)
 Vue.use(Cascader)
 Vue.use(Checkbox)
+Vue.use(Layout)
+Vue.use(Descriptions)
 // use pro-layout components
 Vue.component('pro-layout', ProLayout)
 Vue.component('page-container', PageHeaderWrapper)
