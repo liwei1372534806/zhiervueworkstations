@@ -3,7 +3,7 @@
   "version": "3.0.2",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
@@ -16,6 +16,7 @@
     "ant-design-vue": "^1.7.5",
     "axios": "^0.19.0",
     "core-js": "^3.1.2",
+    "element-ui": "^2.15.6",
     "enquire.js": "^2.1.6",
     "lodash.clonedeep": "^4.5.0",
     "lodash.get": "^4.4.2",

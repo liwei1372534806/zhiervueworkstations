@@ -1,6 +1,6 @@
 // eslint-disable-next-line
 import { UserLayout, BasicLayout, BlankLayout } from '@/layouts'
-import { bxAnaalyse } from '@/core/icons'
+// import { bxAnaalyse } from '@/core/icons'
 
 const RouteView = {
   name: 'RouteView',
@@ -102,7 +102,7 @@ export const asyncRouterMap = [
           }
         ]
       },
-      //testtools
+      // testtools
       {
         path: '/tools',
         redirect: '/tools/user',

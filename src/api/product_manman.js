@@ -4,9 +4,19 @@ const productApi = {
   options_list: '/product/baseEnum',
   check_mobile: '/product/checkMobile',
   check_storage: '/product/checkStorage',
-  create_product: '/product/createManManProudct'
+  create_product: '/product/createManManProudct',
+  app_submit_product: '/product/appSubmitProduct'
 
 }
+
+export function appsubmitProduct(parameter) {
+  return request({
+    url: productApi.app_submit_product,
+    method: 'post',
+    data: parameter
+  })
+}
+
 
 
 export function createProduct(parameter) {
